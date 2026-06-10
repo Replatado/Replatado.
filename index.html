@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Replatado — Comida que vuelve a la mesa</title>
+  <meta name="description" content="Conectamos los excedentes de restaurantes, panaderías y cafeterías con compradores y comedores comunitarios. Ningún plato termina en la basura.">
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:title" content="Replatado — Comida que vuelve a la mesa">
+  <meta property="og:description" content="Conectamos excedentes de locales gastronómicos con compradores y ONGs. Triple impacto: ambiental, social y económico.">
+  <meta property="og:image" content="https://replatado.com/logo.png">
+  <meta property="og:url" content="https://replatado.com">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Replatado — Comida que vuelve a la mesa">
+  <meta name="twitter:description" content="Conectamos excedentes de locales gastronómicos con compradores y ONGs.">
+  <meta name="twitter:image" content="https://replatado.com/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2D6A3C;
+      --green-light: #4A9B5F;
+      --green-pale:  #EAF4ED;
+      --black:       #111111;
+      --gray:        #6B7280;
+      --gray-light:  #F7F8F6;
+      --white:       #FFFFFF;
+      --accent:      #F4A623;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .nav-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 40px 80px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green);
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--green-light); transform: translateY(-2px); }
+
+    .hero-stat {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid #E5E7EB;
+      display: flex;
+      gap: 48px;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .stat-item span {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .hero-visual {
+      background: var(--green-pale);
+      border-radius: 24px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .flow-step {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .flow-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .flow-step p {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .flow-step span {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .flow-arrow {
+      text-align: center;
+      color: var(--green-light);
+      font-size: 20px;
+    }
+
+    /* PROBLEMA */
+    .problema {
+      background: var(--green);
+      color: var(--white);
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .problema-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .problema h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .problema h2 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .problema p {
+      font-size: 18px;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* COMO FUNCIONA */
+    .como {
+      padding: 100px 40px;
+      background: var(--white);
+    }
+
+    .section-label {
+      text-align: center;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--black);
+      margin-bottom: 64px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .paso {
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    .paso-num {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      color: var(--green);
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .paso h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .paso p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .paso-divider {
+      color: var(--green-light);
+      font-size: 28px;
+      padding-bottom: 40px;
+    }
+
+    /* IMPACTO */
+    .impacto {
+      background: var(--gray-light);
+      padding: 100px 40px;
+    }
+
+    .impacto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .impacto-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      border-top: 4px solid var(--green);
+    }
+
+    .impacto-emoji {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .impacto-card h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: var(--green);
+    }
+
+    .impacto-card p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* PARA LOCALES */
+    .locales {
+      padding: 100px 40px;
+      background: var(--white);
+    }
+
+    .locales-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .locales-beneficios {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .locales-beneficios li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      color: var(--green);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .locales-beneficios li p {
+      font-size: 15px;
+      color: var(--black);
+    }
+
+    .locales-beneficios li span {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* FORM */
+    .form-card {
+      background: var(--green-pale);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .form-card h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .form-card p {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #D1D5DB;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--green);
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--green-light); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--green-light);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: #9CA3AF;
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: #9CA3AF;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+
+      .hero { padding: 100px 20px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { display: none; }
+      .hero-stat { gap: 32px; }
+
+      .problema { padding: 80px 20px; }
+      .como { padding: 80px 20px; }
+
+      .pasos {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+      .paso-divider { transform: rotate(90deg); padding-bottom: 0; }
+
+      .impacto { padding: 80px 20px; }
+      .impacto-grid { grid-template-columns: 1fr; max-width: 400px; }
+
+      .locales { padding: 80px 20px; }
+      .locales-inner { grid-template-columns: 1fr; gap: 48px; }
+
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="logo.png" alt="Replatado" style="height:36px;"></a>
+  <a href="#sumate" class="nav-cta">Sumate como local</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">Comida que vuelve a la mesa</span>
+      <h1>La comida que sobra<br>puede <span>alimentar</span><br>a alguien</h1>
+      <p class="hero-sub">Conectamos los excedentes de tu local con compradores y comedores comunitarios. Ningún plato termina en la basura.</p>
+      <a href="#sumate" class="hero-cta">Sumá tu local →</a>
+      <div class="hero-stat">
+        <div class="stat-item">
+          <strong>1/3</strong>
+          <span>de la comida<br>producida se desperdicia</span>
+        </div>
+        <div class="stat-item">
+          <strong>100%</strong>
+          <span>de los excedentes<br>con destino garantizado</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="flow-step">
+        <div class="flow-icon">🍕</div>
+        <div>
+          <p>Tu local publica excedentes</p>
+          <span>Al precio de costo, antes del cierre</span>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-icon">🛍️</div>
+        <div>
+          <p>Los compradores se llevan lo disponible</p>
+          <span>A precio accesible, sin desperdiciar</span>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-icon">🤝</div>
+        <div>
+          <p>El resto va a un comedor</p>
+          <span>Donación automática a ONGs aliadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="problema-inner">
+    <h2>En Buenos Aires, los restaurantes tiran<br><em>toneladas de comida</em> cada día</h2>
+    <p>No porque sea mala. Sino porque no encontró a quién llegar. Replatado cambia eso con un sistema simple que no requiere nada extra de tu parte.</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como" id="como-funciona">
+  <p class="section-label">Cómo funciona</p>
+  <h2 class="section-title">Tres pasos. Sin complicaciones.</h2>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">1</div>
+      <h3>Publicás tus excedentes</h3>
+      <p>Antes del cierre nos avisás qué sobró. Nosotros nos encargamos del resto.</p>
+    </div>
+    <div class="paso-divider">→</div>
+    <div class="paso">
+      <div class="paso-num">2</div>
+      <h3>Se vende a precio de costo</h3>
+      <p>Recuperás parte de tu inversión. Los compradores acceden a comida de calidad a buen precio.</p>
+    </div>
+    <div class="paso-divider">→</div>
+    <div class="paso">
+      <div class="paso-num">3</div>
+      <h3>El resto va a un comedor</h3>
+      <p>Lo que no se vende se dona automáticamente a comedores comunitarios y ONGs aliadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="impacto" id="impacto">
+  <p class="section-label">Nuestro impacto</p>
+  <h2 class="section-title">Triple impacto en cada excedente</h2>
+  <div class="impacto-grid">
+    <div class="impacto-card">
+      <span class="impacto-emoji">🌱</span>
+      <h3>Ambiental</h3>
+      <p>Menos residuos orgánicos en vertederos. Cada kilo de comida rescatada reduce la emisión de metano.</p>
+    </div>
+    <div class="impacto-card">
+      <span class="impacto-emoji">🤝</span>
+      <h3>Social</h3>
+      <p>Comida de calidad llega a comedores comunitarios y familias que la necesitan.</p>
+    </div>
+    <div class="impacto-card">
+      <span class="impacto-emoji">💰</span>
+      <h3>Económico</h3>
+      <p>Los locales recuperan parte de lo que perdían. Sin costos fijos, solo comisión por lo que se vende.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARA LOCALES -->
+<section class="locales" id="sumate">
+  <div class="locales-inner">
+    <div>
+      <p class="section-label">Para locales</p>
+      <h2 class="section-title" style="text-align:left; margin-left:0;">¿Por qué sumarte a Replatado?</h2>
+      <ul class="locales-beneficios">
+        <li>
+          <div class="check">✓</div>
+          <div>
+            <p>Recuperás dinero de lo que ibas a tirar</p>
+            <span>Sin inversión inicial ni costos fijos</span>
+          </div>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <div>
+            <p>Reducís tu huella ambiental</p>
+            <span>Con certificación de impacto para comunicar</span>
+          </div>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <div>
+            <p>Apoyás a comedores comunitarios</p>
+            <span>La donación es automática, vos no hacés nada extra</span>
+          </div>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <div>
+            <p>Sumás a tu comunidad</p>
+            <span>Formás parte de una red de locales conscientes en Buenos Aires</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <h3>Sumate como local</h3>
+      <p>Dejanos tus datos y te contactamos en menos de 24hs.</p>
+      <form id="sumate-form" action="https://formspree.io/f/REEMPLAZAR_ID" method="POST">
+        <div class="form-group">
+          <label>Nombre del local</label>
+          <input type="text" name="local" placeholder="Ej: Panadería La Esquina" required>
+        </div>
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" name="nombre" placeholder="Nombre y apellido" required>
+        </div>
+        <div class="form-group">
+          <label>Mail</label>
+          <input type="email" name="email" placeholder="hola@tulocal.com" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" name="whatsapp" placeholder="+54 11 XXXX XXXX">
+        </div>
+        <button type="submit" class="form-submit">Quiero sumarme →</button>
+        <p id="form-success" style="display:none; margin-top:16px; color:var(--green); font-size:14px; font-weight:600; text-align:center;">
+          ✓ ¡Recibimos tus datos! Te contactamos en menos de 24hs.
+        </p>
+      </form>
+
+      <script>
+        const form = document.getElementById('sumate-form');
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = form.querySelector('.form-submit');
+          btn.textContent = 'Enviando...';
+          btn.disabled = true;
+          try {
+            const res = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+              form.reset();
+              document.getElementById('form-success').style.display = 'block';
+              btn.style.display = 'none';
+            } else {
+              btn.textContent = 'Error al enviar. Intentá de nuevo.';
+              btn.disabled = false;
+            }
+          } catch {
+            btn.textContent = 'Error al enviar. Intentá de nuevo.';
+            btn.disabled = false;
+          }
+        });
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="logo.png" alt="Replatado" style="height:40px; margin-bottom:8px;">
+    <div class="footer-tagline">Comida que vuelve a la mesa</div>
+  </div>
+  <div class="footer-links">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#impacto">Impacto</a>
+    <a href="#sumate">Sumate</a>
+    <a href="mailto:hola@replatado.com">hola@replatado.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
