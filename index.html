@@ -791,11 +791,11 @@
           'Prefer': 'return=minimal'
         },
         body: JSON.stringify({
-          Nombre:    nombre,
-          Email:     email,
-          Telefono:  whatsapp,
-          Direccion: local
-        })
+        nombre_local: local,
+        nombre: nombre,
+        email: email,
+        telefono: whatsapp
+    })
       });
 
       if (respuesta.ok) {
